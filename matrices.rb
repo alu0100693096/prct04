@@ -13,14 +13,14 @@ def multiplicar_matrices(mat1, mat2)
   end
 
   # Crea un array con tantas posiciones como filas tiene la matriz 1.
-  result = Array.new (mat1.length)
+  result = Array.new(mat1.length)
 
   # El array se rellena con arrays de una longitud igual a la cantidad de
   # columnas de la matriz 2 (suponemos que todas las columnas tienen el mismo
   # tamaño que la primera).
   # De este modo construimos una matriz a partir de arrays de arrays.
   for i in 0..result.length
-    result[i] = Array.new (mat2[0].length, 0) # La matriz se rellena de '0'
+    result[i] = Array.new(mat2[0].length, 0) # La matriz se rellena de '0'
   end
 
   # Algoritmo de la multiplicación de matrices.
