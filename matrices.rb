@@ -1,3 +1,34 @@
+
+
+
+puts "Inserte el numero de filas y columnas que tendra la matriz"
+tam = gets.to_i
+m1= Array.new(tam,0)
+for i in 0...tam
+    m1[i] = Array.new(tam,0)
+end
+m2= Array.new(tam,0)
+for i in 0...tam
+    m2[i] = Array.new(tam,0)
+end
+puts "Escriba los valores de los numeros de la primera matriz"
+for i in 0...tam
+    for j in 0...tam
+        m1[i][j] = gets.to_i
+    end
+end
+puts "Escriba los valores de los numeros de la segunda matriz"
+for i in 0...tam
+    for j in 0...tam
+        m2[i][j] = gets.to_i
+    end
+end
+
+
+
+
+
+
 def sumar_matrices(mat1, mat2)
 
 	m = mat1.size
@@ -20,8 +51,8 @@ def sumar_matrices(mat1, mat2)
 			mat3[i][j] = mat1[i][j] + mat2[i][j]
   
 		end
-
 	end
+	mat3
 
 end
 
@@ -55,3 +86,14 @@ def multiplicar_matrices(mat1, mat2)
 end
 
 
+puts "Matrices:"
+print m1
+puts " "
+print m2
+puts " "
+puts "Suma:"
+print sumar_matrices(m1,m2)
+puts " "
+puts "Multiplicacion"
+print multiplicar_matrices(m1,m2)
+puts " "
