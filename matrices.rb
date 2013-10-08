@@ -22,7 +22,7 @@ def sumar_matrices(mat1, mat2)
 		end
 
 	end
-
+	mat3
 end
 
 def multiplicar_matrices(mat1, mat2)
