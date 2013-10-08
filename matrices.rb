@@ -1,61 +1,57 @@
+#!/usr/bin/ruby
+#encoding: utf-8
 
-
-
-puts "Inserte el numero de filas y columnas que tendra la matriz"
-tam = gets.to_i
-m1= Array.new(tam,0)
-for i in 0...tam
-    m1[i] = Array.new(tam,0)
-end
-m2= Array.new(tam,0)
-for i in 0...tam
-    m2[i] = Array.new(tam,0)
-end
-puts "Escriba los valores de los numeros de la primera matriz"
-for i in 0...tam
-    for j in 0...tam
-        m1[i][j] = gets.to_i
+# Permite cargar los datos de una matriz desde la entrada estándar.
+def introducir_matriz(mat)
+  for i in 0...mat.length
+    for j in 0...mat[i].length
+      print "Elemento (#{i+1}, #{j+1}): "
+      mat[i][j] = gets.to_i
     end
+  end
 end
-puts "Escriba los valores de los numeros de la segunda matriz"
-for i in 0...tam
-    for j in 0...tam
-        m2[i][j] = gets.to_i
+
+# Muestra una matriz en forma de matriz por pantalla.
+def mostrar_matriz(mat)
+  for i in 0...mat.length
+    for j in 0...mat[i].length
+      print "#{mat[i][j]} "
     end
+    print "\n"
+  end
 end
 
-
-
-
-
-
+# Función que suma dos matrices y devuelve el resultado.
 def sumar_matrices(mat1, mat2)
+  m = mat1.size
 
-	m = mat1.size
+  # Comprobaciones de que se puede realizar la suma.
+  if m != mat2.size
+    puts "Las matrices no se pueden sumar (Número de filas distinto)."
+    return
+  end
 
-	mat3 = Array.new(m,0)
+  for i in 0...(m)
+    if mat1[i].size != mat2[i].size
+      puts "Las matrices no se pueden sumar (Número de columnas distinto)."
+      return
+    end
+  end
 
-	for i in 0...(m) do
-  
+  # Creamos la matriz resultado.
+  mat3 = Array.new(m){ Array.new(mat1[0].size, 0) }
 
-		mat3[i] = Array.new(m,0)
+  # Algoritmo de la suma de matrices.
+  for i in 0...(m) do
+    for j in 0...(mat3[i].size) do
+      mat3[i][j] = mat1[i][j] + mat2[i][j]
+    end
+  end
 
-
-	end
-
-
-	for i in 0...(m) do
-  
-		for j in 0...(m) do
-    
-			mat3[i][j] = mat1[i][j] + mat2[i][j]
-  
-		end
-	end
-	mat3
-
+  mat3
 end
 
+# Función que multiplica dos matrices y devuelve el resultado.
 def multiplicar_matrices(mat1, mat2)
   # Comprobamos que el número de columnas de la matriz 1 y el número de filas
   # de la matriz 2 coinciden para poder realizar la multiplicación.
@@ -82,18 +78,31 @@ def multiplicar_matrices(mat1, mat2)
     end
   end
 
-  return result
+  result
 end
 
+print "Inserte el número de filas que tendrán las matrices: "
+fil = gets.to_i
+print "Inserte el número de columnas que tendrán las matrices: "
+col = gets.to_i
 
-puts "Matrices:"
-print m1
+m1= Array.new(fil){ Array.new(col, 0) }
+m2= Array.new(fil){ Array.new(col, 0) }
+
+puts "\nIntroduzca los elementos de la primera matriz."
+introducir_matriz m1
+
+puts "\nIntroduzca los elementos de la segunda matriz."
+introducir_matriz m2
+
+puts "\nMatrices:"
+mostrar_matriz m1
 puts " "
-print m2
+mostrar_matriz m2
 puts " "
 puts "Suma:"
-print sumar_matrices(m1,m2)
+mostrar_matriz sumar_matrices(m1,m2)
 puts " "
-puts "Multiplicacion"
-print multiplicar_matrices(m1,m2)
+puts "Multiplicación:"
+mostrar_matriz multiplicar_matrices(m1,m2)
 puts " "
